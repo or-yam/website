@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { DarkModeToggle } from "@/components/darkModeToggle";
+import { NavBar } from "@/components/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,17 +18,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <ThemeProvider attribute="class" defaultTheme="system">
-        <body className={inter.className}>
-          <nav className="flex  p-4">
-            <ul className="mr-auto">
-              <li>or-yam</li>
-            </ul>
-            <DarkModeToggle />
-          </nav>
+      <body className={inter.className}>
+        <ThemeProvider attribute="class" defaultTheme="system">
+          <NavBar />
           {children}
-        </body>
-      </ThemeProvider>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
