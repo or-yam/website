@@ -1,0 +1,67 @@
+import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
+
+type Props = {
+  params: { slug: string };
+};
+
+type RepoData = {
+  name: string;
+  language: string;
+  topics: string[];
+  description: string;
+  homepage: string;
+};
+
+const getRepoData = async (slug: string): Promise<RepoData | null> => {
+  const response = await fetch(`https://api.github.com/repos/or-yam/${slug}`);
+  if (response.ok) {
+    const data = await response.json();
+    return data as RepoData;
+  }
+  return null;
+};
+
+export default async function Project({ params }: Props) {
+  const data = await getRepoData(params.slug);
+
+  if (!data) {
+    return <div>error</div>;
+  }
+
+  return (
+    <main className="flex gap-4 min-h-screen flex-col items-start justify-start p-24">
+      <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+        {data.name}
+      </h1>
+      <p className="leading-7 [&:not(:first-child)]:mt-6">{data.description}</p>
+
+      <Badge variant="outline">{data.language}</Badge>
+
+      <Link
+        className={buttonVariants({ variant: "link" })}
+        href={data.homepage}
+        target="_blank"
+      >
+        View
+      </Link>
+      <Link
+        className={buttonVariants({ variant: "link" })}
+        href={`https://github.com/or-yam/${params.slug}`}
+        target="_blank"
+      >
+        Source code
+      </Link>
+
+      <ul className="flex gap-2 [&>li]:mt-2">
+        {data.topics?.map((topic) => (
+          <li key={topic}>
+            <Badge>{topic}</Badge>
+          </li>
+        ))}
+      </ul>
+    </main>
+  );
+}
