@@ -27,7 +27,7 @@ export function NavBar() {
           <Link
             className={cn(
               buttonVariants({ variant: "ghost" }),
-              pathname === "/projects" && "text-blue-300"
+              pathname.startsWith("/projects") && "text-blue-300"
             )}
             href="/projects"
           >
@@ -38,11 +38,11 @@ export function NavBar() {
           <Link
             className={cn(
               buttonVariants({ variant: "ghost" }),
-              pathname === "/posts" && "text-blue-300"
+              pathname.startsWith("/blog") && "text-blue-300"
             )}
-            href="/posts"
+            href="/blog"
           >
-            posts
+            blog
           </Link>
         </li>
       </ul>
