@@ -1,6 +1,6 @@
+import ReadmeContent from "@/components/readmeContent";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 type Props = {
@@ -13,6 +13,8 @@ type RepoData = {
   topics: string[];
   description: string;
   homepage: string;
+  html_url: string;
+  default_branch: string;
 };
 
 const getRepoData = async (slug: string): Promise<RepoData | null> => {
@@ -25,7 +27,8 @@ const getRepoData = async (slug: string): Promise<RepoData | null> => {
 };
 
 export default async function Project({ params }: Props) {
-  const data = await getRepoData(params.slug);
+  const { slug } = params;
+  const data = await getRepoData(slug);
 
   if (!data) {
     return <div>error</div>;
@@ -49,7 +52,7 @@ export default async function Project({ params }: Props) {
       </Link>
       <Link
         className={buttonVariants({ variant: "link" })}
-        href={`https://github.com/or-yam/${params.slug}`}
+        href={data.html_url}
         target="_blank"
       >
         Source code
@@ -62,6 +65,7 @@ export default async function Project({ params }: Props) {
           </li>
         ))}
       </ul>
+      <ReadmeContent branch={data.default_branch} slug={slug} />
     </main>
   );
 }
