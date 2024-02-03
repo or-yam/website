@@ -1,7 +1,21 @@
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 
-export default function Blog() {
+const getPosts = async (): Promise<any | null> => {
+  const response = await fetch("https://dev.to/api/articles/me/published", {
+    headers: { "api-key": "3yMZpvHGsit1Smbrh3E2fwov" },
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    return data as any;
+  }
+  return null;
+};
+
+export default async function Blog() {
+  const posts = await getPosts();
+
   return (
     <main className="flex gap-4 min-h-screen flex-col items-start justify-start p-24">
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
@@ -9,14 +23,16 @@ export default function Blog() {
       </h1>
 
       <ul className="my-6 ml-6  [&>li]:mt-2">
-        <li>
-          <Link
-            href="blog/intro-to-webgl-threejs"
-            className={buttonVariants({ variant: "link" })}
-          >
-            Intro to webgl and threejs
-          </Link>
-        </li>
+        {posts.map((post) => (
+          <li key={post.id}>
+            <Link
+              href={`blog/${post.slug}`}
+              className={buttonVariants({ variant: "link" })}
+            >
+              {post.title}
+            </Link>
+          </li>
+        ))}
       </ul>
     </main>
   );
