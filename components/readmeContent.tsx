@@ -1,7 +1,4 @@
-import { remark } from "remark";
-import rehypeStringify from "rehype-stringify";
-import remarkRehype from "remark-rehype";
-import rehypeRaw from "rehype-raw";
+import { MDXRemote } from "next-mdx-remote/rsc";
 
 type ReadmeContentProps = { slug: string; branch: string };
 
@@ -10,19 +7,11 @@ export default async function ReadmeContent({
   branch,
 }: ReadmeContentProps) {
   const readmeUrl = `https://raw.githubusercontent.com/or-yam/${slug}/${branch}/README.md`;
-  const fileContents = await fetch(readmeUrl).then((res) => res.text());
+  const readmeMD = await fetch(readmeUrl).then((res) => res.text());
 
-  const processedContent = await remark()
-    .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeRaw)
-    .use(rehypeStringify)
-    .process(fileContents);
-
-  const contentHtml = String(processedContent);
   return (
-    <div
-      className="unReset"
-      dangerouslySetInnerHTML={{ __html: contentHtml }}
-    />
+    <div className="unReset">
+      <MDXRemote source={readmeMD} />
+    </div>
   );
 }
