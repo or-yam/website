@@ -1,7 +1,9 @@
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 
-const getPosts = async (): Promise<any | null> => {
+type Post = { id: string; slug: string; title: string };
+
+const getPosts = async (): Promise<Post[] | null> => {
   const response = await fetch("https://dev.to/api/articles/me/published", {
     headers: { "api-key": "3yMZpvHGsit1Smbrh3E2fwov" },
   });
@@ -14,7 +16,7 @@ const getPosts = async (): Promise<any | null> => {
 };
 
 export default async function Blog() {
-  const posts = await getPosts();
+  const posts = (await getPosts()) || [];
 
   return (
     <main className="flex gap-4 min-h-screen flex-col items-start justify-start p-24">
