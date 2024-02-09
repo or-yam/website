@@ -1,16 +1,16 @@
-import { Github, Codepen, StickyNote } from "lucide-react";
+import { Github, Codepen, StickyNote, Linkedin } from "lucide-react";
 import { Card, CardDescription, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-start p-24">
-      <h1 className="text-xl">Hi there</h1>
+      <h1 className="text-xl">{"Hi there, I'm Or-yam"}</h1>
 
       <ul className=" m-8 flex items-center justify-center gap-2 w-full ">
         <li>
           <Link href="https://github.com/or-yam" target="_blank">
-            <Card className="hover:bg-gray-50">
+            <Card className="hover:border-accent-foreground">
               <CardHeader>
                 <Github />
                 <CardDescription>Github</CardDescription>
@@ -19,8 +19,8 @@ export default function Home() {
           </Link>
         </li>
         <li>
-          <Link href="https://github.com/or-yam" target="_blank">
-            <Card className="hover:bg-gray-50">
+          <Link href="https://codepen.io/oryamne" target="_blank">
+            <Card className="hover:border-accent-foreground">
               <CardHeader>
                 <Codepen />
                 <CardDescription>Codepen</CardDescription>
@@ -29,11 +29,21 @@ export default function Home() {
           </Link>
         </li>
         <li>
-          <Link href="https://github.com/or-yam" target="_blank">
-            <Card className="hover:bg-gray-50">
+          <Link href="https://dev.to/oryam" target="_blank">
+            <Card className="hover:border-accent-foreground">
               <CardHeader>
                 <StickyNote />
                 <CardDescription>Dev.to</CardDescription>
+              </CardHeader>
+            </Card>
+          </Link>
+        </li>
+        <li>
+          <Link href="https://www.linkedin.com/in/oryamne" target="_blank">
+            <Card className="hover:border-accent-foreground">
+              <CardHeader>
+                <Linkedin />
+                <CardDescription>Linkedin</CardDescription>
               </CardHeader>
             </Card>
           </Link>
