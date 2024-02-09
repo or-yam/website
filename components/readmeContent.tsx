@@ -1,5 +1,4 @@
-import { remark } from "remark";
-import html from "remark-html";
+import { MDXRemote } from "next-mdx-remote/rsc";
 
 type ReadmeContentProps = { slug: string; branch: string };
 
@@ -8,14 +7,11 @@ export default async function ReadmeContent({
   branch,
 }: ReadmeContentProps) {
   const readmeUrl = `https://raw.githubusercontent.com/or-yam/${slug}/${branch}/README.md`;
-  const fileContents = await fetch(readmeUrl).then((res) => res.text());
-  const processedContent = await remark().use(html).process(fileContents);
+  const readmeMD = await fetch(readmeUrl).then((res) => res.text());
 
-  const contentHtml = processedContent.toString();
   return (
-    <div
-      className="unReset"
-      dangerouslySetInnerHTML={{ __html: contentHtml }}
-    />
+    <div className="unReset">
+      <MDXRemote source={readmeMD} />
+    </div>
   );
 }
