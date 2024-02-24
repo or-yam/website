@@ -10,40 +10,48 @@ export default function Home() {
       <ul className=" m-8 flex items-center justify-center gap-2 w-full ">
         <li>
           <Link href="https://github.com/or-yam" target="_blank">
-            <Card className="hover:border-accent-foreground">
+            <Card className="hover:shadow-primary hover:text-primary group">
               <CardHeader>
                 <Github />
-                <CardDescription>Github</CardDescription>
+                <CardDescription className="group-hover:text-primary">
+                  Github
+                </CardDescription>
               </CardHeader>
             </Card>
           </Link>
         </li>
         <li>
           <Link href="https://codepen.io/oryamne" target="_blank">
-            <Card className="hover:border-accent-foreground">
+            <Card className="hover:shadow-primary hover:text-primary group">
               <CardHeader>
                 <Codepen />
-                <CardDescription>Codepen</CardDescription>
+                <CardDescription className="group-hover:text-primary">
+                  Codepen
+                </CardDescription>
               </CardHeader>
             </Card>
           </Link>
         </li>
         <li>
           <Link href="https://dev.to/oryam" target="_blank">
-            <Card className="hover:border-accent-foreground">
+            <Card className="hover:shadow-primary hover:text-primary group">
               <CardHeader>
                 <StickyNote />
-                <CardDescription>Dev.to</CardDescription>
+                <CardDescription className="group-hover:text-primary">
+                  Dev.to
+                </CardDescription>
               </CardHeader>
             </Card>
           </Link>
         </li>
         <li>
           <Link href="https://www.linkedin.com/in/oryamne" target="_blank">
-            <Card className="hover:border-accent-foreground">
+            <Card className="hover:shadow-primary hover:text-primary group">
               <CardHeader>
                 <Linkedin />
-                <CardDescription>Linkedin</CardDescription>
+                <CardDescription className="group-hover:text-primary">
+                  Linkedin
+                </CardDescription>
               </CardHeader>
             </Card>
           </Link>

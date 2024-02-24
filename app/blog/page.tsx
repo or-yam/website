@@ -1,7 +1,17 @@
+import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 
-type Post = { id: string; slug: string; title: string };
+export type Post = {
+  id: string;
+  slug: string;
+  title: string;
+  published_at: string;
+  cover_image: string | null;
+  tag_list: string[];
+  reading_time_minutes: number;
+  body_markdown: string;
+};
 
 const getPosts = async (): Promise<Post[] | null> => {
   const response = await fetch("https://dev.to/api/articles/me/published", {
@@ -15,6 +25,14 @@ const getPosts = async (): Promise<Post[] | null> => {
   return null;
 };
 
+const formatPublishedAt = (date: string) => {
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+};
+
 export default async function Blog() {
   const posts = (await getPosts()) || [];
 
@@ -26,13 +44,23 @@ export default async function Blog() {
 
       <ul className="my-6 ml-6  [&>li]:mt-2">
         {posts.map((post) => (
-          <li key={post.id}>
+          <li className="flex items-center gap-2" key={post.id}>
             <Link
               href={`blog/${post.slug}`}
               className={buttonVariants({ variant: "link" })}
             >
               {post.title}
             </Link>
+            <span className="text-sm text-muted-foreground">
+              {formatPublishedAt(post.published_at)}
+            </span>
+            <div className="flex gap-2">
+              {post.tag_list.map((tag) => (
+                <Badge key={tag} variant="outline">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
           </li>
         ))}
       </ul>
