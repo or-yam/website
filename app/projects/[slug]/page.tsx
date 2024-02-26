@@ -2,6 +2,7 @@ import ReadmeContent from "@/components/readmeContent";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: { slug: string };
@@ -21,6 +22,9 @@ const getRepoData = async (slug: string): Promise<RepoData | null> => {
   const response = await fetch(`https://api.github.com/repos/or-yam/${slug}`);
   if (response.ok) {
     const data = await response.json();
+    if (data.message === "Not Found") {
+      return null;
+    }
     return data as RepoData;
   }
   return null;
@@ -31,7 +35,7 @@ export default async function Project({ params }: Props) {
   const data = await getRepoData(slug);
 
   if (!data) {
-    return <div>error</div>;
+    return notFound();
   }
 
   return (

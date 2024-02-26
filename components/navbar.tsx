@@ -10,7 +10,7 @@ export function NavBar() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex  p-4">
+    <nav className="flex p-4 fixed bg-background w-full border-b">
       <ul className="mr-auto flex">
         <li>
           <Link

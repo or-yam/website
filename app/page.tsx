@@ -1,8 +1,6 @@
-import { Github, Codepen, StickyNote, Linkedin } from "lucide-react";
-import { Card, CardDescription, CardHeader } from "@/components/ui/card";
-import Link from "next/link";
+import { LinkCard } from "@/components/linkCard";
 
-const links: { href: string; text: string }[] = [
+const links = [
   {
     href: "https://github.com/or-yam",
     text: "Github",
@@ -19,37 +17,7 @@ const links: { href: string; text: string }[] = [
     href: "https://www.linkedin.com/in/oryamne",
     text: "Linkedin",
   },
-];
-
-const linkTextToIcon = (text: string) => {
-  switch (text) {
-    case "Github":
-      return <Github />;
-    case "Codepen":
-      return <Codepen />;
-    case "Dev.to":
-      return <StickyNote />;
-    case "Linkedin":
-      return <Linkedin />;
-    default:
-      return null;
-  }
-};
-
-const LinkCard = ({ href, text }: { href: string; text: string }) => {
-  return (
-    <Link href={href} target="_blank">
-      <Card className="hover:shadow-primary hover:text-primary group w-36">
-        <CardHeader>
-          {linkTextToIcon(text)}
-          <CardDescription className="group-hover:text-primary">
-            {text}
-          </CardDescription>
-        </CardHeader>
-      </Card>
-    </Link>
-  );
-};
+] as const;
 
 export default function Home() {
   return (
@@ -57,8 +25,8 @@ export default function Home() {
       <h1 className="text-xl">{"Hi there, I'm Or-yam"}</h1>
 
       <ul className="m-8 flex items-center justify-center gap-4 w-full flex-col sm:flex-row">
-        {links.map((link) => (
-          <LinkCard key={link.text} href={link.href} text={link.text} />
+        {links.map(({ text, href }) => (
+          <LinkCard key={text} href={href} text={text} />
         ))}
       </ul>
     </main>
