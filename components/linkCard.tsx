@@ -13,7 +13,7 @@ const mapLinkTextToIcon: Record<string, ReactElement> = {
 export const LinkCard = ({ href, text }: { href: string; text: string }) => {
   return (
     <Link href={href} target="_blank">
-      <Card className="hover:shadow-primary hover:text-primary group w-36">
+      <Card className="group w-36 hover:text-primary hover:shadow-primary">
         <CardHeader>
           {mapLinkTextToIcon?.[text] || null}
           <CardDescription className="group-hover:text-primary">

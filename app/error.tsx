@@ -12,7 +12,7 @@ export default function Error({ error }: Props) {
   }, [error]);
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col items-center justify-center">
       <h2>Something went wrong 😞</h2>
     </div>
   );

@@ -37,7 +37,7 @@ export default async function Blog() {
   const posts = (await getPosts()) || [];
 
   return (
-    <main className="flex gap-4 min-h-screen flex-col items-start justify-start p-8 sm:p-24">
+    <main className="flex min-h-screen flex-col items-start justify-start gap-4 p-8 sm:p-24">
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
         Blog
       </h1>
@@ -52,11 +52,11 @@ export default async function Blog() {
               {post.title}
             </Link>
 
-            <p className="pl-4 mb-2 text-sm text-muted-foreground">
+            <p className="mb-2 pl-4 text-sm text-muted-foreground">
               {formatPublishedAt(post.published_at)}
             </p>
 
-            <div className="pl-4 flex gap-2">
+            <div className="flex gap-2 pl-4">
               {post.tag_list.map((tag) => (
                 <Badge key={tag} variant="outline">
                   {tag}

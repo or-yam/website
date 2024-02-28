@@ -14,7 +14,7 @@ const pinnedRepos = [
 
 export default async function Projects() {
   return (
-    <main className="flex gap-4 min-h-screen flex-col items-start justify-start p-8 sm:p-24">
+    <main className="flex min-h-screen flex-col items-start justify-start gap-4 p-8 sm:p-24">
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
         Projects
       </h1>

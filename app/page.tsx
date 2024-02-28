@@ -24,7 +24,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-start p-8 sm:p-24">
       <h1 className="text-xl">{"Hi there, I'm Or-yam"}</h1>
 
-      <ul className="m-8 flex items-center justify-center gap-4 w-full flex-col sm:flex-row">
+      <ul className="m-8 flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
         {links.map(({ text, href }) => (
           <LinkCard key={text} href={href} text={text} />
         ))}

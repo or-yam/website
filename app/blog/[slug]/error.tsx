@@ -14,7 +14,7 @@ export default function Error({ error, reset }: Props) {
   }, [error]);
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col items-center justify-center">
       <h2>{"Couldn't get this blog 😞"}</h2>
       <Button onClick={reset}>Try again</Button>
     </div>

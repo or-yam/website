@@ -64,12 +64,12 @@
   }
 
   p {
-    @apply my-4 mx-0;
+    @apply mx-0 my-4;
   }
 
   blockquote,
   figure {
-    @apply my-4 mx-10;
+    @apply mx-10 my-4;
   }
 
   q {

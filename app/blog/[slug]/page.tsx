@@ -29,7 +29,7 @@ export default async function Post({ params }: Props) {
     <main className="unReset grid">
       {post.cover_image && (
         <Image
-          className="rounded-lg justify-self-center"
+          className="justify-self-center rounded-lg"
           src={post.cover_image}
           alt={post.title}
           width={800}

@@ -10,13 +10,13 @@ export function NavBar() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex p-4 fixed bg-background w-full border-b">
+    <nav className="fixed flex w-full border-b bg-background p-4">
       <ul className="mr-auto flex">
         <li>
           <Link
             className={cn(
               buttonVariants({ variant: "ghost" }),
-              pathname === "/" && "text-blue-300"
+              pathname === "/" && "text-blue-300",
             )}
             href="/"
           >
@@ -27,7 +27,7 @@ export function NavBar() {
           <Link
             className={cn(
               buttonVariants({ variant: "ghost" }),
-              pathname.startsWith("/projects") && "text-blue-300"
+              pathname.startsWith("/projects") && "text-blue-300",
             )}
             href="/projects"
           >
@@ -38,7 +38,7 @@ export function NavBar() {
           <Link
             className={cn(
               buttonVariants({ variant: "ghost" }),
-              pathname.startsWith("/blog") && "text-blue-300"
+              pathname.startsWith("/blog") && "text-blue-300",
             )}
             href="/blog"
           >
