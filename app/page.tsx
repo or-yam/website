@@ -1,4 +1,9 @@
+import {
+  ContributionGrid,
+  ContributionGridLoader,
+} from "@/components/contributionGrid";
 import { LinkCard } from "@/components/linkCard";
+import { Suspense } from "react";
 
 const links = [
   {
@@ -29,6 +34,9 @@ export default function Home() {
           <LinkCard key={text} href={href} text={text} />
         ))}
       </ul>
+      <Suspense fallback={<ContributionGridLoader />}>
+        <ContributionGrid />
+      </Suspense>
     </main>
   );
 }
