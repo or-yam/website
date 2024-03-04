@@ -8,7 +8,7 @@ type Props = {
 
 const getPost = async (slug: string): Promise<Post | null> => {
   const response = await fetch(`https://dev.to/api/articles/oryam/${slug}`, {
-    headers: { "api-key": "3yMZpvHGsit1Smbrh3E2fwov" },
+    headers: { "api-key": process.env.DEVTO_TOKEN || "" },
   });
   if (response.ok) {
     const data = await response.json();
