@@ -14,11 +14,11 @@ const pinnedRepos = [
 
 export default async function Projects() {
   return (
-    <main className="flex min-h-screen flex-col items-start justify-start gap-4 p-8 sm:p-24">
+    <main className="flex flex-col items-start justify-start gap-4 px-8 pb-4 pt-28 sm:px-24">
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
         Projects
       </h1>
-      <ul className="my-6  [&>li]:mt-2">
+      <ul className="my-4 [&>li]:mt-2">
         {pinnedRepos.map((repo) => (
           <li key={repo}>
             <Link

@@ -92,14 +92,14 @@ async function getContributions() {
 export const ContributionGridLoader = () => {
   const mockWeeks = Array.from({ length: 53 }, (_, i) => i);
   return (
-    <div className="flex h-max w-max items-center justify-center gap-4 rounded-md bg-slate-50 p-4 shadow-2xl dark:bg-sky-950">
+    <div className="flex h-max w-full items-start justify-center gap-2 overflow-x-auto rounded-md bg-background py-4 shadow-2xl">
       {mockWeeks.map((week) => (
-        <div key={week} className="flex h-full flex-col gap-4 bg-transparent">
+        <div key={week} className="flex h-full flex-col gap-2 bg-transparent">
           {Array.from({ length: 7 }, (_, i) => i).map((day) => {
             return (
               <Skeleton
                 key={day}
-                className="size-4 bg-slate-200 shadow-xl sm:size-2"
+                className="size-1.5 bg-slate-200 shadow-xl"
               ></Skeleton>
             );
           })}
@@ -114,16 +114,16 @@ export async function ContributionGrid() {
   const { weeks } = data.user.contributionsCollection.contributionCalendar;
 
   return (
-    <div className="flex h-max w-max items-start justify-center gap-4 rounded-md bg-background p-4 shadow-2xl">
+    <div className="flex h-max w-full items-start justify-center gap-2 overflow-x-auto rounded-md bg-background py-4 shadow-2xl">
       {weeks.map((week) => (
         <div
           key={week.firstDay}
-          className="flex h-full flex-col gap-4 bg-transparent"
+          className="flex h-full flex-col gap-2 bg-transparent"
         >
           {week.contributionDays.map((day) => (
             <div
               key={day.date}
-              className={`${contributionsCountToColor(Number(day.contributionCount))} bg-pink size-4 rounded shadow-xl sm:size-2`}
+              className={`${contributionsCountToColor(Number(day.contributionCount))} bg-pink size-1.5 rounded shadow-xl`}
             ></div>
           ))}
         </div>

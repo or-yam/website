@@ -37,12 +37,12 @@ export default async function Blog() {
   const posts = (await getPosts()) || [];
 
   return (
-    <main className="flex min-h-screen flex-col items-start justify-start gap-4 p-8 sm:p-24">
+    <main className="flex h-max flex-col items-start justify-start gap-4 px-8 pb-4 pt-28 sm:px-24">
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
         Blog
       </h1>
 
-      <ul className="my-6  [&>li]:mt-4">
+      <ul className="my-4 [&>li]:mt-4">
         {posts.map((post) => (
           <li className="" key={post.id}>
             <Link

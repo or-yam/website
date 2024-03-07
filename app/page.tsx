@@ -26,7 +26,7 @@ const links = [
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-start p-8 sm:p-24">
+    <main className="flex flex-col items-center justify-start p-8 sm:p-24">
       <h1 className="text-xl">{"Hi there, I'm Or-yam"}</h1>
 
       <ul className="m-8 flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
