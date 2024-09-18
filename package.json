@@ -47,7 +47,7 @@
     "date-fns": "^2.30.0",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.295.0",
-    "next": "14.0.4",
+    "next": "14.2.12",
     "next-mdx-remote": "^4.4.1",
     "next-themes": "^0.2.1",
     "react": "^18",
