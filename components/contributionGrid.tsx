@@ -54,9 +54,14 @@ const contributionsCountToColor = (contributions: number) => {
   return "bg-black";
 };
 
-async function getContributions() {
+async function getContributions(): Promise<Root | null> {
+  const token = process.env.GH_TOKEN;
+  if (!token) {
+    return null;
+  }
+
   const headers = {
-    Authorization: `bearer ${process.env.GH_TOKEN}`,
+    Authorization: `bearer ${token}`,
   };
   const body = {
     query: `query {
@@ -80,13 +85,21 @@ async function getContributions() {
             }
           }`,
   };
-  const response = await fetch("https://api.github.com/graphql", {
-    method: "POST",
-    body: JSON.stringify(body),
-    headers: headers,
-  });
-  const data = await response.json();
-  return data as Root;
+
+  try {
+    const response = await fetch("https://api.github.com/graphql", {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: headers,
+    });
+    const data = await response.json();
+    if (!data?.data?.user) {
+      return null;
+    }
+    return data as Root;
+  } catch {
+    return null;
+  }
 }
 
 export const ContributionGridLoader = () => {
@@ -110,8 +123,13 @@ export const ContributionGridLoader = () => {
 };
 
 export async function ContributionGrid() {
-  const { data } = await getContributions();
-  const { weeks } = data.user.contributionsCollection.contributionCalendar;
+  const result = await getContributions();
+
+  if (!result) {
+    return <ContributionGridLoader />;
+  }
+
+  const { weeks } = result.data.user.contributionsCollection.contributionCalendar;
 
   return (
     <div className="flex h-max w-full items-start justify-center gap-2 overflow-x-auto rounded-md bg-background py-4 shadow-2xl">

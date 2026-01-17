@@ -13,7 +13,7 @@ export const DarkModeToggle: FC = () => {
     setTheme(isChecked ? "dark" : "light");
   /** To avoid hydration mismatch https://www.npmjs.com/package/next-themes#avoid-hydration-mismatch */
   useEffect(() => {
-    setMounted(true);
+    setMounted(true); // eslint-disable-line react-hooks/set-state-in-effect
   }, []);
 
   if (!mounted) {
