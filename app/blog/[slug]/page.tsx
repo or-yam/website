@@ -1,9 +1,9 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { Post } from "../page";
+import type { Post } from "../page";
 import Image from "next/image";
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 const getPost = async (slug: string): Promise<Post | null> => {
@@ -17,8 +17,8 @@ const getPost = async (slug: string): Promise<Post | null> => {
   return null;
 };
 
-export default async function Post({ params }: Props) {
-  const { slug } = params;
+export default async function BlogPost({ params }: Props) {
+  const { slug } = await params;
   const post = await getPost(slug);
 
   if (!post) {

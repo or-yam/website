@@ -5,7 +5,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 type RepoData = {
@@ -31,7 +31,7 @@ const getRepoData = async (slug: string): Promise<RepoData | null> => {
 };
 
 export default async function Project({ params }: Props) {
-  const { slug } = params;
+  const { slug } = await params;
   const data = await getRepoData(slug);
 
   if (!data) {
